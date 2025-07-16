@@ -1,0 +1,377 @@
+/* Fonts & basic */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=JetBrains+Mono:wght@500&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0; padding: 0;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  color: #1A237E;
+  background: #f0f4ff;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Background animated gradient */
+.background-animation {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(270deg, #2196F3, #64B5F6, #BBDEFB, #90CAF9);
+  background-size: 800% 800%;
+  animation: gradientShift 30s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradientShift {
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* Container */
+.container {
+  max-width: 720px;
+  margin: 40px auto 60px;
+  background: rgba(255 255 255 / 0.95);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  padding: 30px 40px 50px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Headings */
+h1 {
+  font-weight: 700;
+  font-size: 2.6rem;
+  color: #0D47A1;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+h3 {
+  font-weight: 600;
+  color: #1E88E5;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.instructions-panel {
+  background: #E3F2FD;
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 3px 10px rgba(33, 150, 243, 0.15);
+  margin-bottom: 30px;
+  font-size: 1rem;
+  color: #1565C0;
+  user-select: none;
+}
+
+.instructions-panel ol {
+  padding-left: 20px;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* Icon next to heading */
+.icon {
+  font-size: 1.5rem;
+}
+
+/* Template cards */
+.template-card {
+  background: #fafafa;
+  border: 2px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(30, 136, 229, 0.05);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.template-card.selected {
+  background-color: #BBDEFB;
+  border-color: #1E88E5;
+  box-shadow: 0 10px 28px rgba(30, 136, 229, 0.25);
+}
+
+/* Ripple effect container */
+.template-card::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  background: rgba(30, 136, 229, 0.3);
+  width: 100px;
+  height: 100px;
+  top: var(--ripple-y, 50%);
+  left: var(--ripple-x, 50%);
+  pointer-events: none;
+  transition: transform 0.5s ease, opacity 0.7s ease;
+  opacity: 0;
+  z-index: 0;
+}
+
+.template-card.ripple-active::after {
+  transform: scale(4);
+  opacity: 1;
+  transition: transform 0.5s ease, opacity 0.7s ease;
+}
+
+/* Template text */
+.template-text {
+  font-size: 1.05rem;
+  padding: 20px;
+  margin-top: 10px;
+  background: linear-gradient(135deg, #E3F2FD, #ffffff);
+  border-radius: 12px;
+  color: #0D47A1;
+  white-space: pre-wrap;
+  box-shadow: 0 4px 16px rgba(30, 136, 229, 0.15);
+  border: 1px solid #90CAF9;
+  transition: background 0.3s ease;
+}
+
+/* Colored placeholders inside template text */
+.placeholder-highlight {
+  color: #E65100; /* Deep orange */
+  font-weight: 700;
+  animation: pulsePlaceholder 3s ease-in-out infinite;
+}
+
+@keyframes pulsePlaceholder {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Form container */
+.form-container {
+  background: #E3F2FD;
+  padding: 25px 30px;
+  border-radius: 16px;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInSlideUp 0.5s forwards;
+}
+
+/* Progressive reveal animation */
+@keyframes fadeInSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Labels */
+label {
+  font-weight: 600;
+  color: #1E88E5;
+  font-size: 1rem;
+  text-align: center;
+  width: 80%;
+}
+
+/* Inputs */
+input {
+  width: 80%;
+  max-width: 500px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 2px solid #90CAF9;
+  font-size: 1rem;
+  color: #1A237E;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+input::placeholder {
+  color: #E65100;
+  font-weight: 600;
+  animation: pulsePlaceholder 3s ease-in-out infinite;
+}
+
+input:focus {
+  outline: none;
+  border-color: #0D47A1;
+  box-shadow: 0 0 8px rgba(13, 71, 161, 0.3);
+}
+
+/* Validation border colors */
+input.valid {
+  border-color: #2E7D32; /* Green */
+  box-shadow: 0 0 6px rgba(46,125,50,0.5);
+}
+input.invalid {
+  border-color: #D32F2F; /* Red */
+  box-shadow: 0 0 6px rgba(211,47,47,0.5);
+}
+
+/* Buttons */
+button.generate-btn, button.copy-btn {
+  margin-top: 20px;
+  padding: 14px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(30, 136, 229, 0.3);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+button.generate-btn {
+  background-color: #1E88E5;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+button.generate-btn:active {
+  background-color: #1565C0;
+}
+
+/* Ripple effect on buttons */
+button.generate-btn:after,
+button.copy-btn:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background: rgba(255,255,255,0.5);
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.6s ease, opacity 1s ease;
+  top: var(--ripple-y, 50%);
+  left: var(--ripple-x, 50%);
+  transform-origin: center;
+}
+
+button.generate-btn.ripple-active:after,
+button.copy-btn.ripple-active:after {
+  transform: scale(4);
+  opacity: 1;
+  transition: transform 0.6s ease, opacity 1s ease;
+}
+
+button.copy-btn {
+  background-color: #2E7D32;
+  color: white;
+  display: none;
+  transition: background-color 0.3s ease;
+}
+button.copy-btn:active {
+  background-color: #388E3C;
+}
+
+/* Output container with typewriter effect */
+.output-container {
+  margin-top: 30px;
+  background: #E8F0FE;
+  padding: 20px;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  color: #0D47A1;
+  box-shadow: inset 0 2px 6px rgba(13, 71, 161, 0.1);
+  min-height: 120px;
+  white-space: pre-wrap;
+  font-family: 'JetBrains Mono', monospace;
+  position: relative;
+  overflow-wrap: break-word;
+}
+
+/* Mascot */
+.mascot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 3rem;
+  user-select: none;
+  cursor: default;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+  animation: mascotBounce 3s ease-in-out infinite;
+  z-index: 20;
+}
+@keyframes mascotBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Tooltip style */
+.tooltip {
+  position: fixed;
+  background: rgba(30, 136, 229, 0.9);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  pointer-events: none;
+  font-size: 0.95rem;
+  max-width: 300px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tooltip.visible {
+  opacity: 1;
+}
+
+/* Blur background when tooltip active */
+body.tooltip-active > .container {
+  filter: blur(3px);
+  transition: filter 0.3s ease;
+}
+
+/* Animations for fade */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px 15px 40px;
+  }
+
+  input, label {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .instructions-panel {
+    font-size: 0.9rem;
+  }
+
+  button.generate-btn, button.copy-btn {
+    font-size: 16px;
+  }
+}
